@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Custom styles for MediConsult AI */
+.bg-gradient-custom {
+  background: linear-gradient(to bottom right, #EBF4FF, #E0E7FF);
+}
+
+.text-indigo-custom {
+  color: #4F46E5;
+}
+
+.bg-indigo-custom {
+  background-color: #4F46E5;
+}
+
+.hover\:bg-indigo-custom-dark:hover {
+  background-color: #4338CA;
+}
+
+.focus\:ring-indigo-custom:focus {
+  --tw-ring-color: #4F46E5;
+}
+

@@ -1,11 +1,11 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const prescriptions = [
   { id: 1, patientName: 'John Doe', diagnosis: 'Flu', medicine: 'Tamiflu', date: '2023-06-01' },
   { id: 2, patientName: 'Jane Smith', diagnosis: 'Allergies', medicine: 'Zyrtec', date: '2023-06-02' },
   { id: 3, patientName: 'Bob Johnson', diagnosis: 'Hypertension', medicine: 'Lisinopril', date: '2023-06-03' },
-]
+];
 
 export function Dashboard() {
   return (
@@ -15,7 +15,7 @@ export function Dashboard() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-bold mb-6 text-indigo-custom">Recent Prescriptions</h2>
+      <h2 className="text-2xl font-bold mb-6 text-indigo-800">Recent Prescriptions</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full leading-normal">
           <thead>
@@ -60,6 +60,6 @@ export function Dashboard() {
         </table>
       </div>
     </motion.div>
-  )
+  );
 }
 

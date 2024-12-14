@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export function AlternativeMedicine({ prescription }) {
-  const [alternative, setAlternative] = useState(null)
+  const [alternative, setAlternative] = useState(null);
 
   useEffect(() => {
     if (prescription) {
@@ -10,12 +10,12 @@ export function AlternativeMedicine({ prescription }) {
       setAlternative({
         name: 'AlternaMed',
         description: 'A suitable alternative with similar effects and ingredients.',
-      })
+      });
     }
-  }, [prescription])
+  }, [prescription]);
 
   if (!prescription) {
-    return null
+    return null;
   }
 
   return (
@@ -25,7 +25,7 @@ export function AlternativeMedicine({ prescription }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-bold mb-6 text-indigo-custom">Prescription Details</h2>
+      <h2 className="text-2xl font-bold mb-6 text-indigo-800">Prescription Details</h2>
       {Object.entries(prescription).map(([key, value]) => (
         <p key={key} className="mb-2">
           <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
@@ -44,6 +44,6 @@ export function AlternativeMedicine({ prescription }) {
         </motion.div>
       )}
     </motion.div>
-  )
+  );
 }
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export function PrescriptionForm({ setPrescription }) {
   const [formData, setFormData] = useState({
@@ -8,17 +8,17 @@ export function PrescriptionForm({ setPrescription }) {
     medicineName: '',
     dosage: '',
     doctor: '',
-  })
+  });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setPrescription(formData)
+    e.preventDefault();
+    setPrescription(formData);
     // In a real app, you would send this data to your backend here
-  }
+  };
 
   return (
     <motion.form
@@ -27,14 +27,14 @@ export function PrescriptionForm({ setPrescription }) {
       whileHover={{ scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
-      <h2 className="text-2xl font-bold mb-6 text-indigo-custom">Prescription Form</h2>
+      <h2 className="text-2xl font-bold mb-6 text-indigo-800">Prescription Form</h2>
       {Object.entries(formData).map(([key, value]) => (
         <div key={key} className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={key}>
             {key.charAt(0).toUpperCase() + key.slice(1)}
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-custom"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500"
             id={key}
             type="text"
             name={key}
@@ -46,7 +46,7 @@ export function PrescriptionForm({ setPrescription }) {
       ))}
       <div className="flex items-center justify-between">
         <motion.button
-          className="bg-indigo-custom hover:bg-indigo-custom-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -55,6 +55,6 @@ export function PrescriptionForm({ setPrescription }) {
         </motion.button>
       </div>
     </motion.form>
-  )
+  );
 }
 
