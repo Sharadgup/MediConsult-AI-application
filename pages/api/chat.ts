@@ -30,16 +30,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(500).json({ message: 'API key is missing in environment variables' });
   }
 
+  // Log the API key for debugging (Ensure to remove before production for security reasons)
+  console.log('API Key loaded:', process.env.OPENAI_API_KEY);
+
   try {
-    // Create chat completion request
+    // Create chat completion request with the correct API model and message format
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4', // You can replace with gpt-3.5 if needed
+      model: 'gpt-3.5-turbo', // Use the correct model (e.g., gpt-4)
       messages: [
         {
           role: 'system',
-          content: 'You are a helpful medical assistant providing information about medicines and health conditions.',
+          content: 'You are a helpful assistant.',
         },
-        { role: 'user', content: sanitizedMessage },
+        { 
+          role: 'user', 
+          content: sanitizedMessage, // Use a string directly for the content
+        },
       ],
     });
 
@@ -56,6 +62,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Respond with the message from OpenAI
     res.status(200).json({ message: aiMessage });
   } catch (error) {
+    // Handle OpenAI API specific errors
+    if (error.response?.status === 401) {
+      console.error('Unauthorized: Invalid API Key');
+    }
     console.error('OpenAI API error:', error); // Logs the error details
     res.status(500).json({
       message: 'An error occurred while processing your request',
