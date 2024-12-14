@@ -1,9 +1,9 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 
 interface HeaderProps {
-  user?: string | null
-  onLogout?: () => void
+  user: string | null; // Make it non-optional for consistency
+  onLogout: () => void;
 }
 
 export function Header({ user, onLogout }: HeaderProps) {
@@ -42,6 +42,5 @@ export function Header({ user, onLogout }: HeaderProps) {
         )}
       </div>
     </motion.header>
-  )
+  );
 }
-

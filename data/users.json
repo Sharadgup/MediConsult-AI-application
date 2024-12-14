@@ -1,5 +1,9 @@
 {
-    "users": []
-  }
-  
-  
+  "users": [
+    {
+      "id": "d2ec0a23-5f2d-4203-9af4-d1e590fe7094",
+      "username": "shardgupta65@gmail.com",
+      "password": "Typer@1345"
+    }
+  ]
+}

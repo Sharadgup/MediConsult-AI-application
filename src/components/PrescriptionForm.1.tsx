@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export function PrescriptionForm({ setPrescription }) {
+// Define the type for the props
+interface PrescriptionFormProps {
+  setPrescription: (data: { patientName: string; diagnosis: string; medicineName: string; dosage: string; doctor: string }) => void;
+}
+
+export function PrescriptionForm({ setPrescription }: PrescriptionFormProps): React.JSX.Element {
   const [formData, setFormData] = useState({
     patientName: '',
     diagnosis: '',
@@ -10,11 +15,11 @@ export function PrescriptionForm({ setPrescription }) {
     doctor: '',
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setPrescription(formData);
     // In a real app, you would send this data to your backend here
@@ -57,4 +62,3 @@ export function PrescriptionForm({ setPrescription }) {
     </motion.form>
   );
 }
-

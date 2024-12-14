@@ -1,5 +1,5 @@
-import React from 'reactimport React from 'react'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export function Footer() {
   return (
@@ -13,6 +13,5 @@ export function Footer() {
         <p>&copy; 2023 MediConsult AI. All rights reserved.</p>
       </div>
     </motion.footer>
-  )
+  );
 }
-

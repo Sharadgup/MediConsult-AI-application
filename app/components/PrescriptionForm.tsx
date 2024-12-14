@@ -1,24 +1,44 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
-export function PrescriptionForm({ setPrescription }) {
-  const [formData, setFormData] = useState({
+// Define type for form data
+interface PrescriptionFormData {
+  patientName: string;
+  diagnosis: string;
+  medicineName: string;
+  dosage: string;
+  doctor: string;
+}
+
+// Define props type for the component
+interface PrescriptionFormProps {
+  setPrescription: (data: PrescriptionFormData) => void;
+}
+
+export function PrescriptionForm({ setPrescription }: PrescriptionFormProps) {
+  const [formData, setFormData] = useState<PrescriptionFormData>({
     patientName: '',
     diagnosis: '',
     medicineName: '',
     dosage: '',
     doctor: '',
-  })
+  });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  // Handle form field changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setPrescription(formData)
-    // In a real app, you would send this data to your backend here
-  }
+  // Handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setPrescription(formData); // Pass form data to parent
+    console.log('Form submitted:', formData); // Debug log
+  };
 
   return (
     <motion.form
@@ -27,14 +47,20 @@ export function PrescriptionForm({ setPrescription }) {
       whileHover={{ scale: 1.02 }}
       transition={{ type: 'spring', stiffness: 300 }}
     >
-      <h2 className="text-2xl font-bold mb-6 text-indigo-custom">Prescription Form</h2>
+      <h2 className="text-2xl font-bold mb-6 text-indigo-600">Prescription Form</h2>
       {Object.entries(formData).map(([key, value]) => (
         <div key={key} className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={key}>
-            {key.charAt(0).toUpperCase() + key.slice(1)}
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor={key}
+          >
+            {key
+              .split(/(?=[A-Z])/)
+              .join(' ')
+              .replace(/^./, (str) => str.toUpperCase())}
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-custom"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-600"
             id={key}
             type="text"
             name={key}
@@ -46,7 +72,7 @@ export function PrescriptionForm({ setPrescription }) {
       ))}
       <div className="flex items-center justify-between">
         <motion.button
-          className="bg-indigo-custom hover:bg-indigo-custom-dark text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -55,6 +81,5 @@ export function PrescriptionForm({ setPrescription }) {
         </motion.button>
       </div>
     </motion.form>
-  )
+  );
 }
-

@@ -1,21 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-export function AlternativeMedicine({ prescription }) {
-  const [alternative, setAlternative] = useState(null);
+interface Prescription {
+  patientName: string;
+  diagnosis: string;
+  medicineName: string;
+  dosage: string;
+  doctor: string;
+}
+
+interface AlternativeMedicineProps {
+  prescription: Prescription | null;
+}
+
+interface Alternative {
+  name: string;
+  description: string;
+}
+
+export function AlternativeMedicine({ prescription }: AlternativeMedicineProps) {
+  const [alternative, setAlternative] = useState<Alternative | null>(null);
 
   useEffect(() => {
     if (prescription) {
-      // In a real app, you would fetch the alternative from your AI backend here
-      setAlternative({
-        name: 'AlternaMed',
-        description: 'A suitable alternative with similar effects and ingredients.',
-      });
+      // Simulate fetching alternative medicine (replace with your backend API call)
+      setTimeout(() => {
+        setAlternative({
+          name: 'AlternaMed',
+          description: 'A suitable alternative with similar effects and ingredients.',
+        });
+      }, 1000);
     }
   }, [prescription]);
 
   if (!prescription) {
-    return null;
+    return <p>No prescription provided.</p>; // Informative fallback for missing props
   }
 
   return (
@@ -46,4 +65,3 @@ export function AlternativeMedicine({ prescription }) {
     </motion.div>
   );
 }
-

@@ -1,21 +1,38 @@
-import React, { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-export function AlternativeMedicine({ prescription }) {
-  const [alternative, setAlternative] = useState(null)
+interface Prescription {
+  patientName: string;
+  diagnosis: string;
+  medicineName: string;
+  dosage: string;
+  doctor: string;
+}
+
+interface Alternative {
+  name: string;
+  description: string;
+}
+
+interface AlternativeMedicineProps {
+  prescription: Prescription | null;
+}
+
+export function AlternativeMedicine({ prescription }: AlternativeMedicineProps) {
+  const [alternative, setAlternative] = useState<Alternative | null>(null);
 
   useEffect(() => {
     if (prescription) {
-      // In a real app, you would fetch the alternative from your AI backend here
+      // Simulate fetching alternative medicine. Replace with API call if needed
       setAlternative({
         name: 'AlternaMed',
         description: 'A suitable alternative with similar effects and ingredients.',
-      })
+      });
     }
-  }, [prescription])
+  }, [prescription]);
 
   if (!prescription) {
-    return null
+    return <p className="text-red-500">No prescription provided.</p>; // Show message if no prescription is available
   }
 
   return (
@@ -25,7 +42,7 @@ export function AlternativeMedicine({ prescription }) {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-2xl font-bold mb-6 text-indigo-custom">Prescription Details</h2>
+      <h2 className="text-2xl font-bold mb-6 text-indigo-800">Prescription Details</h2>
       {Object.entries(prescription).map(([key, value]) => (
         <p key={key} className="mb-2">
           <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
@@ -44,6 +61,5 @@ export function AlternativeMedicine({ prescription }) {
         </motion.div>
       )}
     </motion.div>
-  )
+  );
 }
-

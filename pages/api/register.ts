@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { findUser, saveUser } from '@/utils/userUtils'
+import { findUser, saveUser } from 'utils/userUtils'
 import { v4 as uuidv4 } from 'uuid'
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
