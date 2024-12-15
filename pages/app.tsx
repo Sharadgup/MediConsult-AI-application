@@ -1,1 +1,1 @@
-import './styles/globals.css';
+import '/workspaces/MediConsult-AI-application/app/globals.css';
